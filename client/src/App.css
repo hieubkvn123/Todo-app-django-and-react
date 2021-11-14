@@ -1,0 +1,56 @@
+
+.app-form-container, .app-container {
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height:100vh;
+}
+
+.app-form, .app-body {
+  width : 80vw;
+  border : 1px solid #00000060;
+  padding : 50px;
+  border-radius: 20px;
+  box-shadow : 5px 10px #00000030;
+}
+
+.app-navbar {
+  position : absolute;
+  width : 100vw;
+  z-index: 1;
+}
+
+#todo-list {
+  width : 80vw;
+  height : 80vh;
+  overflow : scroll;
+  scrollbar-color: transparent transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#todo-list::-webkit-scrollbar {
+  display: none;
+}
+
+button.close {
+  border : none;
+  background: transparent;
+  font-size : 20px
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 200ms;
+}

@@ -1,0 +1,5 @@
+djangorestframework
+Django
+bcrypt
+gunicorn==19.6.0
+whitenoise

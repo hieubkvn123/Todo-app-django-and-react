@@ -8,7 +8,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { delete_item, update_item, complete_task } from '../actions/itemAction'
-import { AiOutlineCloseSquare, AiOutlineCheckSquare, AiOutlineClockCircle } from 'react-icons/ai'
+import { AiOutlineCloseSquare, AiOutlineCheckSquare, AiOutlineClockCircle, AiOutlineFieldTime } from 'react-icons/ai'
 import UpdateTodoModal from './UpdateTodoModal'
 
 class TodoItem extends Component {
@@ -64,7 +64,8 @@ class TodoItem extends Component {
 			const date1 = new Date(date)
 			const date2 = new Date() // Today
 
-			const diffTime = Math.abs(date2 - date1)
+			// const diffTime = Math.abs(date2 - date1)
+			const diffTime = date1 - date2
 			const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
 			return diffDays
@@ -77,9 +78,14 @@ class TodoItem extends Component {
 					<strong className='mb-3'><em><u>{title}</u></em></strong>
 					{historyView ? null : 
 					(<div style={{ position : 'absolute', 'right' : 10, top : 0 }}>
-						{ getDateDiff(date) < 4 ?
+						{ getDateDiff(date) > 0 && getDateDiff(date) < 4 ?
 							<AiOutlineClockCircle title={`Task dued in ${getDateDiff(date)} days`} style={{'color':'red'}} /> : null
 						}
+
+						{ getDateDiff(date) < 0 ?
+							<AiOutlineFieldTime title={'Task overdued'} style={{'color' : 'red'}}/> : null
+						}
+
 						<span onClick={this.onRemoveClick} style={{ color : 'red'}}><AiOutlineCloseSquare/></span>
 						<span onClick={this.onCompleteClick} style={{ color : 'green '}}><AiOutlineCheckSquare/></span>
 						<UpdateTodoModal title={title} desc={desc} index={index} date={date} handler={this.updateHandler}/>
